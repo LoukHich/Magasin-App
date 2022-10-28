@@ -1,0 +1,24 @@
+header{
+  background: linear-gradient(60deg, #1b75bb 40%, #26a9e0 100%);
+  font-size: 20px;
+  font-weight: normal;
+
+}
+.dropdown-menu{
+  background: linear-gradient(60deg, #1b75bb 40%, #26a9e0 100%);
+  width: 200px;
+  color: white;
+}
+
+.dropdown-menu:hover{
+  color: orange;
+  background: linear-gradient(60deg, #1b75bb 40%, #26a9e0 100%);
+}
+
+.text-end button{
+  width: 140px;
+  font-size: 18px;
+  font-weight: bolder;
+  border-width: 2px;
+  margin-right: 10px;
+}

@@ -1,0 +1,113 @@
+<div class="container">
+
+  <nav class="m-2 p-2 border border-info">
+    <button (click)="handleGetAllProducts()" class="btn btn-outline-info">
+      <i class="bi bi-save"></i>
+      All Products
+    </button>
+    <button (click)="getPromotedProducts()" class="btn btn-outline-info ms-2">
+      <i class="bi bi-save"></i>
+      Promoted Products
+    </button>
+    <button *ngIf="this.authService.hasRole('admin')" (click)="addNewProduct()" class="btn btn-outline-info ms-2">
+      <i class="bi bi-save"></i>
+      New Product
+    </button>
+  </nav>
+  <ng-template #Errors>
+    <div class="text-danger">{{ messageError}}</div>
+  </ng-template>
+
+  <div class="card p-2 n-2" *ngIf="Copyproducts|async ;else Errors">
+    <div class="card-header">
+      Listes des Produits
+    </div>
+    <div class="card-body">
+      <form [formGroup]="searchform">
+        <div class="input-group rounded">
+          <label class="input-group-text">Keyword:</label>
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+            aria-describedby="search-addon" formControlName="search" />
+          <button (click)="searchForm()" class="input-group-text border-0" id="search-addon">
+            <i class="bi  bi-search"></i>
+          </button>
+        </div>
+      </form>
+      <table class="table">
+
+        <thead *ngIf="this.authService.hasRole('admin')">
+          <tr>
+            <td> <i (click)="setSelection(!selectMode)" class="btn"
+                [ngClass]="selectMode==true?'bi bi-check-square':'bi-square'"></i></td>
+
+            <td>
+              <select (change)="setSelection(true)" [(ngModel)]="selection" class="form-select">
+                <option value="all">All</option>
+                <option value="promo">Promo</option>
+              </select>
+            </td>
+
+            <td *ngIf="selectedProducts.length>0">
+              <i class="btn btn-danger bi bi-trash ms-1" (click)="handleDeleteSelection()"></i>
+              <i class="btn btn-danger bi bi-heart-arrow ms-1" (click)="handlePromotion()"></i>
+            </td>
+          </tr>
+        </thead>
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th style="text-align: center;">Promotion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let elm of Copyproducts|async">
+
+            <td *ngIf="this.authService.hasRole('admin')">
+              <i (click)="select(elm)" [ngClass]="elm.selected==true?'bi bi-check-square':'bi-square'" class="btn"></i>
+            </td>
+
+            <td>{{elm.id}}</td>
+            <td>{{elm.name}}</td>
+            <td>{{elm.price}}</td>
+
+
+
+            <td *ngIf="authService.hasRole('admin')">
+              <button (click)="addPrmo(elm)" class="btn btn-success">
+                <i class="bi bi-hand-thumbs-up"></i>
+              </button>
+            </td>
+            <td style="text-align: center;"> <i
+                [ngClass]="elm.promotion ==true ?'bi bi-heart-fill text-success': 'bi bi-heart' "></i></td>
+            <td *ngIf="authService.hasRole('admin')">
+              <button (click)="deleteProduct(elm)" class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+            <td *ngIf="authService.hasRole('admin')">
+              <button (click)="editProduct(elm.id)" class="btn btn-danger">
+                <i class="bi bi-pen"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-pills">
+        <li *ngFor="let i of  arr">
+
+          <a [ngClass]=" page===i ? 'btn-info':'btn-outline-info' " (click)="goTo(i)" class="btn ms-1 mt-1">{{i}}</a>
+        </li>
+
+
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>

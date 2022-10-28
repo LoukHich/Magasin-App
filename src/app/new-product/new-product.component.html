@@ -1,0 +1,36 @@
+<div  class="container mt-3 col-md-6 offset-md-3">
+
+  <form  [formGroup]="newProductFom"  (ngSubmit)="handleAddProduct()">
+
+       <div class="nb-3">
+        <!--{{newProductFom.controls['name'].errors |json }}-->
+        <label class="form-label" for="name">Name</label>
+        <input type="text"  formControlName="name" class="form-control">
+
+        <small  class="text-danger" *ngIf="newProductFom.controls['name'].errors && newProductFom.controls['name'].touched "   >
+          {{getErrorMessage('Name',newProductFom.controls['name'].errors)}}
+
+       </small>
+       </div>
+
+       <div class="nb-3">
+       <!-- {{newProductFom.controls['price'].errors |json}}-->
+        <label class="form-label">Price</label>
+        <input type="text"  formControlName="price" class="form-control">
+
+        <small  class="text-danger" *ngIf="newProductFom.controls['price'].errors && newProductFom.controls['price'].touched"   >
+          {{getErrorMessage('Price',newProductFom.controls['price'].errors)}}
+
+       </small>
+       </div>
+
+       <div class="nb-3">
+        <label class="form-label">promotion</label>
+        <input type="checkbox" class="form-check" formControlName="promotion">
+       </div>
+
+      <button  class="btn btn-info" type="submit" [disabled]="!newProductFom.valid"  >Enregitrer</button>
+
+  </form>
+
+</div>

@@ -1,0 +1,151 @@
+<header class="p-3 bg text-white">
+  <div class="container-fluid">
+      <div class="d-flex flex-wrap ">
+          <span class="fs-4 sidebar-heading text-center">
+              <img src="/assets/logo.jpg" width="50" height="50" alt=""> MAGASIN
+          </span>
+
+          <ng-container *ngIf="!authService.isAuthenticatedUser() ; else authenticated">
+              <a href="/" class="d-flex align-items-center mb-2 mb- mx-auto">
+              </a>
+              <div class="text-end">
+
+                  <button type="button" class="btn btn-outline-light me-2" routerLink="/login">Login</button>
+                  <button type="button" class="btn btn-outline-warning " data-bs-toggle="tooltip" (click)="qliq()"
+                    title="You can't sign-up yet !">Sign-up</button>
+              </div>
+          </ng-container>
+
+          <ng-template #authenticated>
+              <a href="/" class="d-flex align-items-center mb-2 mb- mx-auto">
+              </a>
+              <div class="text-end" >
+                  <div class="nav-item ">
+                      <a class="nav-link action-button text-white text-decoration-none" href="/" role="button" aria-expanded="false">
+                          Home
+                      </a>
+                  </div>
+              </div>
+              <div class="text-end" >
+                  <div class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle action-button text-white text-decoration-none" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                         Products
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a
+                            routerLink="header/products"
+                              routerLinkActive="active"
+
+                              class="nav-link text-white roundd p5"
+                            >
+                              <i class="bi bi-people"></i>
+                              List of products
+                            </a></li>
+                       <!--   <li><a class="dropdown-item  text-white" href="/customers/new"   > <i class="bi bi-plus-circle"></i>  Add new product </a></li>-->
+                      </ul>
+                  </div>
+              </div>
+
+
+              <div class="text-end" >
+                  <div class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle action-button text-white text-decoration-none" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                         Custumers
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a
+                              routerLink="/custumers"
+                              routerLinkActive="active"
+                              class="nav-link text-white roundd p5"
+                            >
+                              <i class="bi bi-people"></i>
+                              List of Custumers
+                            </a></li>
+                          <li><a class="dropdown-item  text-white" href="/operations"  > <i class="bi bi-arrow-left-right"></i>  Account operations </a></li>
+                      </ul>
+                  </div>
+              </div>
+
+
+
+              <a href="/" class="d-flex align-items-center mb-2 mb- mx-auto">
+              </a>
+              <div class="text-end" >
+                  <div class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle action-button text-white text-decoration-none" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                          <i class="bi bi-person-fill"></i>
+                          {{ this.authService.authenticatedUser!.username }}
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" (click)="handlelogout()">
+                              <i class="bi bi-box-arrow-left"></i>
+                             Log Out
+                          </a></li>
+                      </ul>
+                  </div>
+              </div>
+          </ng-template>
+      </div>
+  </div>
+</header>
+
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Nadori JAVA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/header/products">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/header/custumers">Custumers</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        <ul  class="navbar-nav">
+          <li>
+            <a class="nav-link">{{authService.authenticatedUser?.username}}</a>
+
+          </li>
+          <li>
+            <a  class="btn nav-link" (click)="handlelogout()">
+              <i class="bi bi-box-arrow-right"></i>
+            </a>
+          </li>
+        </ul>
+        <ng-container >
+
+          <a href="/" class="d-flex align-items-center mb-2 mb- mx-auto">
+          </a>
+          <div class="text-end">
+
+              <button type="button" class="btn btn-outline-light me-2" routerLink="/login" >Login</button>
+              <button type="button" class="btn btn-outline-warning " data-bs-toggle="tooltip"
+                title="You can't sign-up yet !" (click)="handlelogout()">Sign-up</button>
+          </div>
+          </ng-container>
+
+      </div>
+    </div>
+  </nav>
+
+-->

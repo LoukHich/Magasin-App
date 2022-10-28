@@ -1,0 +1,29 @@
+<body>
+<div class="container">
+<div class="card">
+<div class="inner-box1">
+<div class="card-front">
+  <div *ngIf="messageError" class="text-danger">{{messageError}}</div>
+<h2>Authentification</h2>
+<form  [formGroup]="loginform" (ngSubmit)="onSubmit()">
+<input type="email" class="input-box" placeholder="Entrer votre nom d'utilisateur" required formControlName="username">
+<input type="password" class="input-box" placeholder="Saisir votre mot de passe" required  formControlName="password">
+
+<input type="checkbox" disabled > <span>Se rappeler de moi</span>
+<button type="submit"  classe="button" name="button">Se connecter</button>
+</form>
+<a href="#"></a>
+<a href="#">Mot de passe oublié?</a>
+<a href="#">Questions ?</a>
+ <p style=" text-align:center; margin-top:70px;">Copyright © 2020 - Tous droits réservés</p>
+</div>
+
+</div>
+<div class="inner-box2">
+
+</div>
+</div>
+</div>
+</body>
+
+
